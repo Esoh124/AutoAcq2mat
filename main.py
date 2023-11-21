@@ -2,9 +2,9 @@ import os
 import glob
 import subprocess
 
-path = "Z:/101_B2X_Pilot/B2X_main/20220209_LJH/Biopac"
+path = "Z:/101_B2X_Pilot/B2X_main/20211113_KDH/Biopac"
 
-basepath = "20220209_LJH"
+basepath = "20211113_KDH"
 
 os.makedirs(basepath, exist_ok=True)
 

@@ -50,8 +50,14 @@ def parse_data(data):
 
     # Add channel data
     for channel in data.channels:
-        chan_name = channel.name.lower().strip().replace(' ', '_')
         if(clean(channel.name) == "ecg100c"):
+            d[clean(channel.name)] = {
+                'wave':channel.data,
+                'Fs': channel.samples_per_second,
+                'unit': channel.units,
+            }
+        if((clean(channel.name) == "eog100c")and(d.get(clean(channel.name))==None)):
+
             d[clean(channel.name)] = {
                 'wave':channel.data,
                 'Fs': channel.samples_per_second,
