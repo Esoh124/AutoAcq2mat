@@ -50,19 +50,38 @@ def parse_data(data):
 
     # Add channel data
     for channel in data.channels:
-        if(clean(channel.name) == "ecg100c"):
+        
+        if clean(channel.name) in d:
+            d[clean(channel.name)+'_2'] = {
+                 'wave':channel.data,
+                 'Fs': channel.samples_per_second,
+                 'unit': channel.units,
+             }
+        else:
             d[clean(channel.name)] = {
-                'wave':channel.data,
-                'Fs': channel.samples_per_second,
-                'unit': channel.units,
-            }
-        if((clean(channel.name) == "eog100c")and(d.get(clean(channel.name))==None)):
+                    'wave':channel.data,
+                    'Fs': channel.samples_per_second,
+                    'unit': channel.units,
+                }
+        # if(clean(channel.name) == "ecg100c"):
+        #     d[clean(channel.name)] = {
+        #         'wave':channel.data,
+        #         'Fs': channel.samples_per_second,
+        #         'unit': channel.units,
+        #     }
+        # if((clean(channel.name) == "eog100c")and(d.get(clean(channel.name))==None)):
+        #     d[clean(channel.name)+'_1'] = {
+        #         'wave':channel.data,
+        #         'Fs': channel.samples_per_second,
+        #         'unit': channel.units,
+        #     }
+        # elif(clean(channel.name) == "eog100c"):
+        #     d[clean(channel.name)+'_2'] = {
+        #         'wave':channel.data,
+        #         'Fs': channel.samples_per_second,
+        #         'unit': channel.units,
+        #     }
 
-            d[clean(channel.name)] = {
-                'wave':channel.data,
-                'Fs': channel.samples_per_second,
-                'unit': channel.units,
-            }
 
     # Add event markers
     event_markers = {}
